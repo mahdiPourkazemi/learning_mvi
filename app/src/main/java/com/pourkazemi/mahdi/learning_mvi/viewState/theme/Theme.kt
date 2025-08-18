@@ -1,6 +1,5 @@
-package com.pourkazemi.mahdi.learning_mvi.ui.theme
+package com.pourkazemi.mahdi.learning_mvi.viewState.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

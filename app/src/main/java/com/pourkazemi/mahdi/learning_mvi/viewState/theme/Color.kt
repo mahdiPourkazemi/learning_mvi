@@ -1,4 +1,4 @@
-package com.pourkazemi.mahdi.learning_mvi.ui.theme
+package com.pourkazemi.mahdi.learning_mvi.viewState.theme
 
 import androidx.compose.ui.graphics.Color
 
