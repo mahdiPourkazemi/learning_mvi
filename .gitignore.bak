@@ -1,0 +1,91 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# =====================================
+# Android Studio / IntelliJ
+# =====================================
+.idea/
+*.iml
+*.ipr
+*.iws
+/.gradle/
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# =====================================
+# Gradle
+# =====================================
+.gradle/
+build/
+*/build/
+!gradle-wrapper.jar
+!**/src/main/**/build.gradle
+!**/src/main/**/build.gradle.kts
+
+# =====================================
+# Local configuration
+# =====================================
+local.properties
+gradle.properties
+
+# =====================================
+# Keystore files
+# =====================================
+*.jks
+*.keystore
+
+# =====================================
+# OS / Editor files
+# =====================================
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*.tmp
+
+# =====================================
+# Android Specific
+# =====================================
+# Generated APKs
+*.apk
+*.ap_
+*.aab
+
+# =====================================
+# NDK / CMake
+# =====================================
+obj/
+*.so
+
+# =====================================
+# Firebase / Google services (اختیاری)
+# =====================================
+google-services.json
+GoogleService-Info.plist
+
+# =====================================
+# Kotlin / Java
+# =====================================
+out/
+*.class
+
+# =====================================
+# Jetpack Compose Compiler
+# =====================================
+compose-compiler/
+
