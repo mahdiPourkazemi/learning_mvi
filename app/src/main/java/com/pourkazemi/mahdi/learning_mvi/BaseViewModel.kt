@@ -13,8 +13,11 @@ abstract class BaseViewModel<Intent, State, Effect>(
     private val _state = MutableStateFlow(initialState)
     val state: StateFlow<State> = _state.asStateFlow()
 
-    private val _effect = Channel<Effect>(Channel.BUFFERED)
-    val effect = _effect.receiveAsFlow()
+    private val _effect = MutableSharedFlow<Effect>(
+        replay = 0,                // هیچ رویدادی ذخیره نمی‌شود
+        extraBufferCapacity = 1     // اجازه بافر یک رویداد اضافی
+    )
+    val effect: SharedFlow<Effect> = _effect
 
     fun setState(reducer: State.() -> State) {
         _state.value = _state.value.reducer()
@@ -22,7 +25,7 @@ abstract class BaseViewModel<Intent, State, Effect>(
 
     fun setEffect(builder: () -> Effect) {
         viewModelScope.launch {
-            _effect.send(builder())
+            _effect.tryEmit(builder())
         }
     }
 
