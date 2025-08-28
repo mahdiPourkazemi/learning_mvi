@@ -17,10 +17,14 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import kotlinx.coroutines.launch
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModelProvider
+import com.pourkazemi.mahdi.learning_mvi.data.AppDatabase
 import com.pourkazemi.mahdi.learning_mvi.model.Todo
+import com.pourkazemi.mahdi.learning_mvi.repo.TodoRepository
 import com.pourkazemi.mahdi.learning_mvi.viewState.TodoState
 import com.pourkazemi.mahdi.learning_mvi.viewState.theme.Learning_mviTheme
 
@@ -28,8 +32,19 @@ import com.pourkazemi.mahdi.learning_mvi.viewState.theme.Learning_mviTheme
 @Composable
 fun TodoScreen(
     modifier: Modifier = Modifier,
-    viewModel: TodoViewModel = viewModel()
+    //viewModel: TodoViewModel = viewModel()
 ) {
+    val context = LocalContext.current
+    val viewModel: TodoViewModel = viewModel(
+        factory = object : ViewModelProvider.Factory {
+            override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>): T {
+                val db = AppDatabase.getDatabase(context)
+                val repository = TodoRepository(db.todoDao())
+                @Suppress("UNCHECKED_CAST")
+                return TodoViewModel(repository) as T
+            }
+        }
+    )
     val state by viewModel.state.collectAsState()
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
